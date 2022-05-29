@@ -1,10 +1,7 @@
-import { Link, Toggle } from "components";
-import { useLocation } from "react-router-dom";
-import styled, { useTheme } from "styled-components";
-import Themes from "themes";
+import styled from "styled-components";
 
 const HeaderWrapper = styled.header`
-  background-color: ${props => props.theme.menuBg};
+  background-color: #eeee;
   box-sizing: border-box;
   display: flex;
   height: 8rem;
@@ -26,7 +23,7 @@ const NameWrapper = styled.div`
   font-size: 1.7rem;
   margin: auto 0;
   font-weight: 500;
-  color: ${props => props.theme.secondary};
+  color: #a882ce;
 
   @media (min-width: 768px) {
     font-size: 2.5rem;
@@ -36,30 +33,15 @@ const NameWrapper = styled.div`
 const ToggleWrapper = styled.div`
   display: flex;
   margin: auto 0 auto auto;
-  cursor: pointer;
 `;
 
-const Header = ({
-  toggleTheme,
-}: {
-  toggleTheme: () => void;
-}): React.ReactElement => {
-  const { pathname } = useLocation();
-  const theme = useTheme();
+const Header = (): React.ReactElement => {
   return (
     <HeaderWrapper>
       <NameWrapper>
         Teresa <span role="img">👩‍💻 🦄 🌏 </span>
       </NameWrapper>
-      <ToggleWrapper>
-        <Link to="/" isActive={pathname === "/"}>
-          Myself
-        </Link>
-        <Link to="/blog" isActive={pathname === "/blog"}>
-          Blog
-        </Link>
-        <Toggle isActive={theme === Themes.Dark} onToggle={toggleTheme} />
-      </ToggleWrapper>
+      <ToggleWrapper>Myself Blog</ToggleWrapper>
     </HeaderWrapper>
   );
 };
