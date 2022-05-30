@@ -1,4 +1,7 @@
-import { Header } from "components";
+import { Header, PageLayout } from "components";
+import About from "pages/About";
+import Blog from "pages/Blog";
+import { Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -19,6 +22,12 @@ function App() {
     <>
       <GlobalStyle />
       <Header />
+      <PageLayout>
+        <Routes>
+          <Route path="/" element={<About />} />
+          <Route path="/blog" element={<Blog />} />
+        </Routes>
+      </PageLayout>
     </>
   );
 }
