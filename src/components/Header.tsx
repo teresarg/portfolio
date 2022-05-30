@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Toggle } from "components";
+import { useState } from "react";
 
 const HeaderWrapper = styled.header`
   background-color: #eeee;
@@ -36,12 +38,16 @@ const ToggleWrapper = styled.div`
 `;
 
 const Header = (): React.ReactElement => {
+  const [isActive, setIsActive] = useState(false);
   return (
     <HeaderWrapper>
       <NameWrapper>
         Teresa <span role="img">👩‍💻 🦄 🌏 </span>
       </NameWrapper>
-      <ToggleWrapper>Myself Blog</ToggleWrapper>
+      <ToggleWrapper>
+        Myself Blog
+        <Toggle isActive={isActive} onToggle={() => setIsActive(!isActive)} />
+      </ToggleWrapper>
     </HeaderWrapper>
   );
 };
