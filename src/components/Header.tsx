@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { Toggle } from "components";
+import { Link, Toggle } from "components";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const HeaderWrapper = styled.header`
   background-color: #eeee;
@@ -39,13 +40,19 @@ const ToggleWrapper = styled.div`
 
 const Header = (): React.ReactElement => {
   const [isActive, setIsActive] = useState(false);
+  const { pathname } = useLocation();
   return (
     <HeaderWrapper>
       <NameWrapper>
         Teresa <span role="img">👩‍💻 🦄 🌏 </span>
       </NameWrapper>
       <ToggleWrapper>
-        Myself Blog
+        <Link to="/" isActive={pathname === "/"}>
+          Myself
+        </Link>
+        <Link to="/blog" isActive={pathname === "/blog"}>
+          Blog
+        </Link>
         <Toggle isActive={isActive} onToggle={() => setIsActive(!isActive)} />
       </ToggleWrapper>
     </HeaderWrapper>
