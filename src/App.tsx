@@ -1,8 +1,10 @@
 import { Header, PageLayout } from "components";
 import About from "pages/About";
 import Blog from "pages/Blog";
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import Themes from "themes";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -18,17 +20,22 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () =>
+    theme === "light" ? setTheme("dark") : setTheme("light");
+
   return (
-    <>
+    <ThemeProvider theme={theme === "light" ? Themes.Light : Themes.Dark}>
       <GlobalStyle />
-      <Header />
+      <Header toggleTheme={toggleTheme} />
       <PageLayout>
         <Routes>
           <Route path="/" element={<About />} />
           <Route path="/blog" element={<Blog />} />
         </Routes>
       </PageLayout>
-    </>
+    </ThemeProvider>
   );
 }
 

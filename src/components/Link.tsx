@@ -5,7 +5,7 @@ import styled, { css } from "styled-components";
 // Bulk styles
 const Link = styled(LinkReactRouter)<{ isActive?: boolean }>`
   box-sizing: border-box;
-  color: #a882ce;
+  color: ${(props) => props.theme.secondary};
   display: block;
   margin: auto 0;
   padding: 0.4rem 0.4rem;

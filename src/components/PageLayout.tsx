@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const ContentWrapper = styled.main`
-  background-color: white;
+  background-color: ${(props) => props.theme.bodyBg};
   box-sizing: border-box;
-  color: black;
+  color: ${(props) => props.theme.primary};
   display: flex;
   flex-direction: column;
   justify-content: center;

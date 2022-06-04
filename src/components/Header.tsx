@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { Link, Toggle } from "components";
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import Themes from "themes";
 
 const HeaderWrapper = styled.header`
-  background-color: #eeee;
+  background-color: ${(props) => props.theme.menuBg};
   box-sizing: border-box;
   display: flex;
   height: 8rem;
@@ -26,7 +26,7 @@ const NameWrapper = styled.div`
   font-size: 1.7rem;
   margin: auto 0;
   font-weight: 500;
-  color: #a882ce;
+  color: ${(props) => props.theme.secondary};
 
   @media (min-width: 768px) {
     font-size: 2.5rem;
@@ -38,9 +38,13 @@ const ToggleWrapper = styled.div`
   margin: auto 0 auto auto;
 `;
 
-const Header = (): React.ReactElement => {
-  const [isActive, setIsActive] = useState(false);
+const Header = ({
+  toggleTheme,
+}: {
+  toggleTheme: () => void;
+}): React.ReactElement => {
   const { pathname } = useLocation();
+  const theme = useTheme();
   return (
     <HeaderWrapper>
       <NameWrapper>
@@ -53,7 +57,7 @@ const Header = (): React.ReactElement => {
         <Link to="/blog" isActive={pathname === "/blog"}>
           Blog
         </Link>
-        <Toggle isActive={isActive} onToggle={() => setIsActive(!isActive)} />
+        <Toggle isActive={theme === Themes.Dark} onToggle={toggleTheme} />
       </ToggleWrapper>
     </HeaderWrapper>
   );
