@@ -1,9 +1,17 @@
-import { Link as LinkReactRouter } from "react-router-dom";
+import React from "react";
+import { Link as LinkReactRouter, LinkProps } from "react-router-dom";
 import styled, { css } from "styled-components";
+
+const LinkReactRouterWrapper = ({
+  isActive,
+  ...props
+}: LinkProps & { isActive: boolean }): React.ReactElement => (
+  <LinkReactRouter {...props}></LinkReactRouter>
+);
 
 // Estilar un componente react
 // Bulk styles
-const Link = styled(LinkReactRouter)<{ isActive?: boolean }>`
+const Link = styled(LinkReactRouterWrapper)<{ isActive?: boolean }>`
   box-sizing: border-box;
   color: ${(props) => props.theme.secondary};
   display: block;

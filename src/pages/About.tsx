@@ -1,3 +1,10 @@
+import {
+  faGithub,
+  faLinkedinIn,
+  faTwitter
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { RoundButton } from "components";
 import React from "react";
 import styled from "styled-components";
 
@@ -16,6 +23,17 @@ const About = (): React.ReactElement => (
       and <span>empower women in technology</span>, such as organizing the first
       two successful editios of Women Techmakers Alicante.
     </Description>
+    <LinksSection>
+      <RoundButton as="a" href="https://twitter.com/teresaroga7">
+        <FontAwesomeIcon icon={faTwitter} />
+      </RoundButton>
+      <RoundButton as="a" href="https://github.com/teresarg">
+        <FontAwesomeIcon icon={faGithub} />
+      </RoundButton>
+      <RoundButton as="a" href="https://es.linkedin.com/in/teresaroga7">
+        <FontAwesomeIcon icon={faLinkedinIn} />
+      </RoundButton>
+    </LinksSection>
   </>
 );
 
@@ -39,6 +57,11 @@ const Description = styled.p`
     font-size: 2rem;
     color: #a882ce;
   }
+`;
+
+const LinksSection = styled.div`
+  text-align: center;
+  margin-top: 3rem;
 `;
 
 export default About;
