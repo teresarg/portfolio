@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// Ejemplo de colores del tema
 const ContentWrapper = styled.main`
   background-color: ${(props) => props.theme.bodyBg};
   box-sizing: border-box;

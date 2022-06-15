@@ -16,7 +16,6 @@ const ToggleWrapper = styled.div`
   }
 `;
 
-// Ejemplo de cómo pasar una prop
 const Notch = styled.div<{ isActive: boolean }>`
   background: white;
   border-radius: 50%;
@@ -42,7 +41,6 @@ const ThemeModeIconDark = styled.div`
   }
 `;
 
-// Example of how to modify a styled component
 const ThemeModeIconLight = styled(ThemeModeIconDark)`
   left: 0.5rem;
 `;
@@ -56,10 +54,10 @@ const Toggle = ({
 }): React.ReactElement => (
   <ToggleWrapper onClick={onToggle}>
     <ThemeModeIconDark>
-      <img src="./moon.svg" />
+      <img src="./moon.svg" alt="moon"/>
     </ThemeModeIconDark>
     <ThemeModeIconLight>
-      <img src="./sun.svg" />
+      <img src="./sun.svg" alt="sun"/>
     </ThemeModeIconLight>
     <Notch isActive={isActive} />
   </ToggleWrapper>

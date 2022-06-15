@@ -17,9 +17,9 @@ const About = (): React.ReactElement => (
       I am a <span>frontend engineer </span>working remotly at{" "}
       <span>Olympic Channel</span> while based in Valencia, Spain.
       <br /> Currently, I am working mainly with React, Nextjs and Styled
-      components. I love facing new chagenges and bringing my{" "}
+      components. I love facing new challenges and bringing my{" "}
       <span>entrepreneurial spirit</span> into coding! <br />
-      During the last few years, I have been involve in initiatives to support
+      During the last few years, I have been involved in initiatives to support
       and <span>empower women in technology</span>, such as organizing the first
       two successful editios of Women Techmakers Alicante.
     </Description>

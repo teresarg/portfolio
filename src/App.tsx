@@ -2,7 +2,7 @@ import { Header, PageLayout } from "components";
 import About from "pages/About";
 import Blog from "pages/Blog";
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Themes from "themes";
 
@@ -26,7 +26,7 @@ function App() {
     theme === "light" ? setTheme("dark") : setTheme("light");
 
   return (
-    <ThemeProvider theme={theme == "light" ? Themes.Light : Themes.Dark}>
+    <ThemeProvider theme={theme === "light" ? Themes.Light : Themes.Dark}>
       <GlobalStyle />
       <Header toggleTheme={toggleTheme} />
       <PageLayout>
