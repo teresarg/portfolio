@@ -1,6 +1,7 @@
 import { Header, PageLayout } from "components";
 import About from "pages/About";
 import Blog from "pages/Blog";
+import Post from "pages/Post";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
@@ -20,10 +21,10 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () =>
-    theme === "light" ? setTheme("dark") : setTheme("light");
+    theme === "dark" ? setTheme("light") : setTheme("dark");
 
   return (
     <ThemeProvider theme={theme === "light" ? Themes.Light : Themes.Dark}>
@@ -33,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<About />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<Post />} />
         </Routes>
       </PageLayout>
     </ThemeProvider>

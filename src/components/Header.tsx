@@ -4,32 +4,26 @@ import styled, { useTheme } from "styled-components";
 import Themes from "themes";
 
 const HeaderWrapper = styled.header`
-  background-color: ${props => props.theme.menuBg};
+  border-radius: 19% 54%;
+  background-color: rgba(255, 255, 255, 0.03);
+  margin-top: 2rem;
   box-sizing: border-box;
   display: flex;
   height: 8rem;
   padding: 0 2rem 0 2rem;
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 19rem;
+  right: 2rem;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%);
 
   @media (min-width: 768px) {
+    width: 26rem;
     padding: 0 3rem 0 3rem;
   }
 
   @media (min-width: 1024px) {
     padding: 0 3rem 0 6rem;
-  }
-`;
-
-const NameWrapper = styled.div`
-  font-size: 1.7rem;
-  margin: auto 0;
-  font-weight: 500;
-  color: ${props => props.theme.secondary};
-
-  @media (min-width: 768px) {
-    font-size: 2.5rem;
   }
 `;
 
@@ -48,9 +42,6 @@ const Header = ({
   const theme = useTheme();
   return (
     <HeaderWrapper>
-      <NameWrapper>
-        Teresa <span role="img">👩‍💻 🦄 🌏 </span>
-      </NameWrapper>
       <ToggleWrapper>
         <Link to="/" isActive={pathname === "/"}>
           Myself

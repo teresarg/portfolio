@@ -1,7 +1,9 @@
 export const theme = {
   primary: "black",
   secondary: "#a882ce",
-  bodyBg: "white",
-  menuBg: "#eeee",
+  bodyBg: "seashell",
+  menuBg: "seashell",
+  image: '/prueba1.png',
+  image2: '/prueba.png'
 };
 
