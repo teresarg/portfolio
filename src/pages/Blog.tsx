@@ -2,31 +2,9 @@ import { endpoint } from '@octokit/endpoint';
 import React from "react";
 import ReactMarkdown from 'react-markdown'
 import Styled from "styled-components";
-import { Link as LinkReactRouter, LinkProps } from "react-router-dom";
-
-function padTo2Digits(num: number) {
-  return num.toString().padStart(2, '0');
-}
-
-const formatDate = (date: Date): string =>
-  [
-    padTo2Digits(date.getMonth() + 1),
-    padTo2Digits(date.getDate()),
-    date.getFullYear(),
-  ].join('/');
-
-const extractSubtitle = (text: string) => text.slice(
-  text.indexOf('<subtitle>') + 10,
-  text.lastIndexOf('</subtitle>'),
-);
-
-const extractImage = (text: string) => text.slice(
-  text.indexOf('<image>') + 7,
-  text.lastIndexOf('</image>'),
-);
-
-type Issue = { title: string, body: string, createdAt: string, subtitle: string, image: string };
-type IssueGh = { title: string, body: string, created_at: string, labels: { name: string }[] }
+import { Link as LinkReactRouter } from "react-router-dom";
+import { Issue, IssueGh } from 'types';
+import { extractImage, extractSubtitle, formatDate, mapIssueGh } from 'mapper';
 
 const Post = ({ children, title, date, image }: { children: React.ReactElement, title: string, date: string, image: string }) => <PostWrapper><div dangerouslySetInnerHTML={{ __html: image }}></div><Subtitle><h2>{title}</h2>{children}<span>{date.toString()}</span></Subtitle></PostWrapper>
 
@@ -34,13 +12,7 @@ const mapPosts = (issues: IssueGh[]): Issue[] => issues.reduce((acc: Issue[], is
   const label = issue.labels.filter((label) => label.name === 'blog');
 
   if (label.length) {
-    acc.push({
-      title: issue.title,
-      body: issue.body.split('</metadata>')[1],
-      createdAt: formatDate(new Date(issue.created_at)),
-      subtitle: extractSubtitle(issue.body),
-      image: extractImage(issue.body)
-    })
+    acc.push(mapIssueGh(issue))
   }
   return acc;
 }, [])
@@ -60,14 +32,14 @@ const Blog = (): React.ReactElement => {
 
       const response = await fetch(url, options as RequestInit)
       const issues = await response.json();
+
       setIssues(mapPosts(issues))
     }
     fetchIssues()
   }, [])
-
   return <PostsWrapper>
-    {issues.map(({ title, subtitle, createdAt, body, image }, index) =>
-      <LinkReactRouter to={`/blog/${title}`} state={{ body, image, createdAt, title }}><Post title={title} image={image} date={createdAt} key={`${title + index}`}><ReactMarkdown children={subtitle} /></Post></LinkReactRouter>
+    {issues.map(({ title, subtitle, createdAt, body, image, number }, index) =>
+      <LinkReactRouter to={`/blog/${number}`} state={{ body, image, createdAt, title, number }}><Post title={title} image={image} date={createdAt} key={`${title + index}`}><ReactMarkdown children={subtitle} /></Post></LinkReactRouter>
     )}
   </PostsWrapper>
 }
